@@ -25,10 +25,10 @@ public class EnderBox extends JavaPlugin {
 	
     @Override
     public void onEnable(){
-        // Create the SampleBukkitPluginListener
+        // Create the Listener
         new EnderBoxListener(this);
 
-        // Load the enderbox recipe??
+        // Load the recipe??
         this.loadRecipes(); 
     }
  
@@ -45,12 +45,10 @@ public class EnderBox extends JavaPlugin {
     	// define the item
     	ItemStack box = new ItemStack(BOX, 1);
     	
-    	box.addUnsafeEnchantment(ENCHANT, 1);
 	    ItemMeta meta = (ItemMeta) box.getItemMeta();
 	    meta.setDisplayName(BOX_NAME);
     	meta.setLore(BOX_LORE);
 	    box.setItemMeta(meta);
-	    box.removeEnchantment(ENCHANT);
 
 	    // define the recipe.
         BOX_RECIPE = new ShapelessRecipe(box);
