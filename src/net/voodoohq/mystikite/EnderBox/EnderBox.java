@@ -40,6 +40,25 @@ public class EnderBox extends JavaPlugin {
     	
     }
 
+    public boolean isEnderBox(ItemStack item) {
+    	boolean isEB = false;
+    	
+    	if (item != null) {
+    		String name1 = item.getItemMeta().getDisplayName();
+            List<String> lore1 = item.getItemMeta().getLore();
+
+            if (name1 == null || lore1 == null) {
+            	return isEB;
+            }
+            
+            if (item.getType().equals(this.BOX) && name1.equals(this.BOX_NAME) && lore1.equals(this.BOX_LORE)) {
+            	isEB = true;
+            }
+       	}
+       		
+		return isEB;
+    }
+    
     public void loadRecipes() {
     	
     	// define the item

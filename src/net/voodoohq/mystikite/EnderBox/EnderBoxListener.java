@@ -19,25 +19,19 @@ public class EnderBoxListener implements Listener {
     	this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         ItemStack item = e.getItem();
         
         // Make sure we are using our object.     
-        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && item != null &&
-        		item.getType().equals(plugin.BOX)) {
-
-            String name1 = item.getItemMeta().getDisplayName();
-            List<String> lore1 = item.getItemMeta().getLore();
-     
-            if (name1.equals(plugin.BOX_NAME) && lore1.equals(plugin.BOX_LORE)) {
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && item != null && plugin.isEnderBox(item)) {
  
-            	e.setCancelled(true);   // Always cancel the event to prevent normal interaction
+            e.setCancelled(true);   // Always cancel the event to prevent normal interaction
 
-            	// Open the inventory for the player
-            	player.openInventory(player.getEnderChest());
-            }
+            // Open the inventory for the player
+            player.openInventory(player.getEnderChest());
         }
-    }
+	}
 }
+
